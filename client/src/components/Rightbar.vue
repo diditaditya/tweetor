@@ -42,6 +42,7 @@ export default {
     },
     backToInitial() {
       this.$store.dispatch('fetchTweets');
+      this.$router.push('/');
     },
     searchTags() {
       let tagArr = this.searchedTags.match(/\w+/ig);

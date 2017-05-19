@@ -138,14 +138,25 @@ export const store = new Vuex.Store({
       Vue.axios.get(url)
         .then((response) => {
           let check = false;
-          context.state.tweets.map((tweet) => {
-            if(tweet._id === response.data._id) {
-              check = true;
-            }
-          });
-          if(check === false) {
-            context.commit('addTweet', response.data);
+
+          console.log(response.data);
+
+          if(response.data.user._id !== context.state.user.id) {
+            context.commit('addTweet', response.data)
           }
+
+          // context.state.tweets.map((tweet) => {
+          //   if(tweet._id === response.data._id) {
+          //     check = true;
+          //     console.log('tweet id is found');
+          //   }
+          // });
+          // console.log(check);
+          // if(check === false) {
+          //   console.log('tweet id is not found');
+          //   context.commit('addTweet', response.data);
+          // }
+
         })
         .catch((err) => {
           console.log(err);
